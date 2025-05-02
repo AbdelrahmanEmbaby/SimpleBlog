@@ -1,0 +1,2 @@
+export const PASSWORD_MIN_LENGTH = 8;
+export const MAX_POST_CONTENT_LENGTH = 500;
