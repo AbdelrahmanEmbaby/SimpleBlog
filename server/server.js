@@ -7,15 +7,17 @@ import { createUser } from './utils/users.util.js';
 import { authUser } from './utils/users.util.js';
 import { verifyToken } from './utils/auth.util.js';
 import { deleteImage, upload, uploadImage } from './services/cloudinary.service.js';
+import connectDB from './utils/db.util.js';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log('Connected to MongoDB'))
-    .catch(err => console.error('MongoDB connection error:', err));
+connectDB();
+// mongoose.connect(process.env.MONGODB_URI)
+//     .then(() => console.log('Connected to MongoDB'))
+//     .catch(err => console.error('MongoDB connection error:', err));
 
 app.get('/posts', getPostsByPage);
 
