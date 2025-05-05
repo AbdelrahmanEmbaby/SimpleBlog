@@ -1,6 +1,6 @@
-const apiBaseUrl = process.env.NODE_ENV === 'production'
-    ? process.env.BACKEND_URL
-    : '/api';
+import { getBEURL } from "./be.util";
+
+const apiBaseUrl = getBEURL();
 
 export const register = async (user) => {
     try {
