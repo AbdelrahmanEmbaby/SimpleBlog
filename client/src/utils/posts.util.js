@@ -1,6 +1,6 @@
 export const getPostsByPage = async (page, limit) => {
     try {
-        const response = await fetch(`/api/posts?page=${page}&limit=${limit}`);
+        const response = await fetch(`${process.env.BACKEND_URL}/posts?page=${page}&limit=${limit}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -18,7 +18,7 @@ export const getPostsByPage = async (page, limit) => {
 
 export const getPostByID = async (id) => {
     try {
-        const response = await fetch(`/api/posts/${id}`);
+        const response = await fetch(`${process.env.BACKEND_URL}/posts/${id}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -38,7 +38,7 @@ export const createPost = async (post) => {
     try {
         const userData = localStorage.getItem("userData");
         const token = userData ? JSON.parse(userData).token : null;
-        const response = await fetch(`/api/posts`, {
+        const response = await fetch(`${process.env.BACKEND_URL}/posts`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -64,7 +64,7 @@ export const updatePost = async (id, post) => {
         console.log("updating")
         const userData = localStorage.getItem("userData");
         const token = userData ? JSON.parse(userData).token : null;
-        const response = await fetch(`/api/posts/${id}`, {
+        const response = await fetch(`${process.env.BACKEND_URL}/posts/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -89,7 +89,7 @@ export const deletePost = async (id) => {
     try {
         const userData = localStorage.getItem("userData");
         const token = userData ? JSON.parse(userData).token : null;
-        const response = await fetch(`/api/posts/${id}`, {
+        const response = await fetch(`${process.env.BACKEND_URL}/posts/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -114,7 +114,7 @@ export const uploadImage = async (file) => {
     formData.append('image', file);
 
     try {
-        const response = await fetch('/api/posts/image', {
+        const response = await fetch('${process.env.BACKEND_URL}/posts/image', {
             method: 'POST',
             body: formData,
         });
@@ -132,7 +132,7 @@ export const uploadImage = async (file) => {
 
 export const deleteImage = async (publicId) => {
     try {
-        const response = await fetch(`/api/posts/image/${publicId}`, {
+        const response = await fetch(`${process.env.BACKEND_URL}/posts/image/${publicId}`, {
             method: 'DELETE',
         });
 

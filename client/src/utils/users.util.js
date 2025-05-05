@@ -1,6 +1,6 @@
 export const register = async (user) => {
     try {
-        const response = await fetch(`/api/user/register`, {
+        const response = await fetch(`${process.env.BACKEND_URL}/user/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ export const register = async (user) => {
 
 export const login = async (credentials) => {
     try {
-        const response = await fetch(`/api/user/login`, {
+        const response = await fetch(`${process.env.BACKEND_URL}/user/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
