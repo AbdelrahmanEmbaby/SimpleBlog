@@ -1,6 +1,10 @@
+const apiBaseUrl = process.env.NODE_ENV === 'production'
+    ? process.env.BACKEND_URL
+    : '/api';
+
 export const register = async (user) => {
     try {
-        const response = await fetch(`/api/user/register`, {
+        const response = await fetch(`${apiBaseUrl}/user/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -22,7 +26,7 @@ export const register = async (user) => {
 
 export const login = async (credentials) => {
     try {
-        const response = await fetch(`/api/user/login`, {
+        const response = await fetch(`${apiBaseUrl}/user/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

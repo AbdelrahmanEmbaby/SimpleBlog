@@ -4,15 +4,16 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
-
-  // Use BACKEND_URL if set, otherwise default to localhost (dev)
+  const isProduction = mode === 'production';
   const apiUrl = env.BACKEND_URL || 'http://localhost:5000';
 
   return {
     plugins: [react(), tailwindcss()],
-    // Expose the API URL to the frontend
     define: {
-      'process.env.BACKEND_URL': JSON.stringify(apiUrl),
+      'process.env': {
+        BACKEND_URL: JSON.stringify(apiUrl),
+        NODE_ENV: JSON.stringify(mode)
+      }
     },
     server: {
       proxy: {
@@ -20,9 +21,9 @@ export default defineConfig(({ mode }) => {
           target: apiUrl,
           changeOrigin: true,
           secure: false,
-          rewrite: (path) => path.replace(/^\/api/, ''),
-        },
-      },
-    },
+          rewrite: (path) => path.replace(/^\/api/, '')
+        }
+      }
+    }
   };
 });
