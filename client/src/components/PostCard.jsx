@@ -40,12 +40,18 @@ export default function PostCard({ post }) {
       className={`
         ${isDeleted ? "max-h-0" : "max-h-[200rem]"}
         overflow-hidden
-        ${isVisible ? "opacity-100 translate-y-0 transform-none" : "opacity-0 transform translate-y-4 scale-90"}
-        transition-all duration-300 ease-in
+        transition-all duration-1000
         `}
       ref={postRef}
     >
-      <section className="flex flex-col py-8 gap-4 border-b border-gray-300">
+      <section
+        className={`flex flex-col py-8 gap-4 border-b border-gray-300 ${
+          isVisible
+            ? "opacity-100 translate-y-0 transform-none"
+            : "opacity-0 transform translate-y-4 scale-90"
+        }
+        transition-all duration-300 ease-in`}
+      >
         <div>
           <PostHeader
             post={post}
