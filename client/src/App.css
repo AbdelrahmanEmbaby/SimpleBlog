@@ -28,3 +28,23 @@
 :root {
     scroll-behavior: smooth;
 }
+
+.post-card {
+    transition: none;
+    animation: none;
+    animation: smoothEntrance linear forwards;
+    animation-timeline: view();
+    animation-range: cover 0% cover 50%;
+}
+
+@keyframes smoothEntrance {
+    from {
+        opacity: 0;
+        transform: scale(0.1);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

@@ -13,7 +13,13 @@ const storage = new CloudinaryStorage({
     params: {
         folder: 'blog-images',
         allowed_formats: ['jpg', 'jpeg', 'png', 'gif', 'webp'],
-        public_id: (req, file) => `img-${Date.now()}`
+        public_id: (req, file) => `img-${Date.now()}`,
+        quality: 'auto:good',
+        fetch_format: 'auto',
+        transformation: [
+            { width: 1920, crop: 'limit' },
+            { quality: 'auto:eco' }
+        ]
     }
 });
 
