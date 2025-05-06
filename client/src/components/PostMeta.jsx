@@ -2,7 +2,7 @@ import { formatDistanceToNow } from "date-fns";
 
 export default function PostMeta({ post }) {
   return (
-    <p className="text-sm flex gap-1">
+    <p className="text-sm flex gap-1 flex-wrap">
       <span>
         Author: {post.author_id.first_name} {post.author_id.last_name}
       </span>
